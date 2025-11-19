@@ -90,7 +90,7 @@ class Server:
                     if not data_bytes:
                         self._logger.error("Connection closed unexpectedly while receiving message body.")
                         break
-                    data = data_bytes.decode('ascii')
+                    data = data_bytes.decode('utf-8')
                     self._logger.info("Message received: %r", data)
                     data_lines = data.splitlines()
                     command = data_lines[0]
@@ -114,7 +114,7 @@ class Server:
                         formatted_msg = 'ERR\nCommand not supported'
                     
                     # Encode message and prepend length prefix before sending
-                    msg_bytes_out = formatted_msg.encode('ascii')
+                    msg_bytes_out = formatted_msg.encode('utf-8')
                     len_prefix_out = struct.pack('!I', len(msg_bytes_out))
                     full_message_out = len_prefix_out + msg_bytes_out
                     
@@ -141,7 +141,7 @@ class Client:
         """ Call server """
 
         # Encode message and prepend length prefix
-        msg_bytes = msg_in.encode('ascii')
+        msg_bytes = msg_in.encode('utf-8')
         msg_len = len(msg_bytes)
         self.logger.info("Msg length %r", msg_len)
         len_prefix = struct.pack('!I', msg_len)  # creates a 4-byte unsigned integer
@@ -164,8 +164,8 @@ class Client:
             print("Server closed connection while sending message body.")
             return "ERR"
 
-        self.logger.info("Message received: %r", data_bytes.decode('ascii'))
-        data = data_bytes.decode('ascii')
+        self.logger.info("Message received: %r", data_bytes.decode('utf-8'))
+        data = data_bytes.decode('utf-8')
         data_lines = data.splitlines()
 
         command = data_lines[0]

@@ -5,7 +5,8 @@ import random
 # Initialize the dictionary with the original data
 tel = {
     'jack': '4098',
-    'sape': '4139'
+    'sape': '4139',
+    'björn': '0123213231'
 }
 
 # 1. Determine the number of new entries needed

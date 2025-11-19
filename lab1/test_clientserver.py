@@ -62,7 +62,7 @@ class TestTelService(unittest.TestCase):
 
         # Explicitly check that the received message size is greater than 1024 bytes,
         # confirming the system's ability to handle large data transfers.
-        self.assertGreater(len(response.encode('ascii')), 1024, "Response payload should be larger than 1024 bytes")
+        self.assertGreater(len(response.encode('utf-8')), 1024, "Response payload should be larger than 1024 bytes")
 
     def test_unknown_command(self):
         """Tests the server's response to an unsupported command."""
